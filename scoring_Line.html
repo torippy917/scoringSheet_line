@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>Line得点計算</title>
+      <link rel="stylesheet" type="text/css" href="scoring_Line.css">
+   </head>
+   <body>
+      <script type="text/javascript" src="scoring_Line.js"></script>
+      <table>
+         <tr>
+            <th>得点項目</th>
+            <th>クリア数</th>
+            <th>得点</th>
+         </tr>
+         <tr>
+            <td>ギャップ</td>
+            <td><input type="number" id="gap" value="0" min="0"></td>
+            <td><input readonly type="number" id="score_gap" value="0"></td>
+         </tr>
+         <tr>
+            <td>減速バンプ</td>
+            <td><input type="number" id="bump" value="0" min="0"></td>
+            <td><input readonly type="text" id="score_bump" value="0"></td>
+         </tr>
+         <tr>
+            <td>交差点</td>
+            <td><input type="number" id="crossing" value="0" min="0"></td>
+            <td><input readonly type="text" id="score_crossing" value="0"></td>
+         </tr>
+         <tr>
+            <td>行き止まり</td>
+            <td><input type="number" id="deadEnd" value="0" min="0"></td>
+            <td><input readonly type="text" id="score_deadEnd" value="0"></td>
+         </tr>
+         <tr>
+            <td>障害物</td>
+            <td><input type="number" id="obstacle" value="0" min="0"></td>
+            <td><input readonly type="text" id="score_obstacle" value="0"></td>
+         </tr>
+         <tr>
+            <td>傾斜路</td>
+            <td><input type="number" id="slope" value="0" min="0"></td>
+            <td><input readonly type="text" id="score_slope" value="0"></td>
+         </tr>
+      </table><br>
+
+      <table>
+         <caption>チェックポイント(タイル)の得点</caption>
+         <thead>
+            <tr>
+               <th>チェックポイント番号</th>
+               <th>タイルの数</th>
+               <th>競技進行の停止の数</th>
+               <th>得点</th>
+               <th>追加/削除</th>
+            </tr>
+         </thead>
+         <!--▼改行しない▼-->
+         <tbody id="p2146-tbody"><tr><td id="checkpoint_number">1</td><td><input type="number" value="0" min="0"></td><td><input type="number" value="0" min="0"></td><td>0</td><td><input type="button" value="+" onclick="addList(this);" />　<input type="button" value="-" onclick="removeList(this);" /></td></tr></tbody>
+         <!--▲改行しない▲-->
+      </table><br>
+      <!--▼変更しない▼-->
+      <table>
+         <caption>被災者の数と最後のチェックポイント通過後の競技進行の停止の回数</caption>
+         <thead>
+            <tr>
+               <th id="living_victim_number">生きている被災者の数</th>
+               <th id="dead_victim_number">死んだ被災者の数</th>
+               <th id="stop_number">競技進行の停止の回数</th>
+               <th id="th_level">レベル</th>
+            </tr>
+         </thead> 
+         <tbody id="tbody_rescue_details">
+            <tr>
+               <td><output>00</output>　　　　<input type="button" value="+" onclick="ChangeBallNumber(this,'add','silver')">　<input type="button" value="-" onclick="ChangeBallNumber(this,'subtract','silver')"></td>
+               <td><output>00</output>　　　　<input type="button" value="+" onclick="ChangeBallNumber(this,'add','black')">　<input type="button" value="-" onclick="ChangeBallNumber(this,'subtract','black')"></td>
+               <td><output>00</output>　　　　<input type="button" value="+" onclick="ChangeBallNumber(this,'add','stop')">　<input type="button" value="-" onclick="ChangeBallNumber(this,'subtract','stop')"></td>
+               <td id="radio_level"><select name="level" size="1"><option value="level1" selected>レベル１</option><option value="level2">レベル２</option></select></td>
+            </tr>
+         </tbody>
+      </table>
+      <!--▲変更しない▲-->
+      <br>
+
+      <div id="rescued_victim">
+         <table>
+            <caption>救助した被災者の選択</caption>
+            <tbody>
+               <tr>
+                  <th id="living_victim">生きている被災者</th>
+                  <th id="dead_victim">死んだ被災者</th>
+               </tr>
+               <tr>
+                  <td><button type="button" onclick="CollectingBall('silver')"><img src="./ball_silver.png" alt="銀ボール"></button></td>
+                  <td><button type="button" onclick="CollectingBall('black')"><img src="./ball_black.png" alt="黒ボール"></button></td>
+               </tr>
+            </tbody>
+         </table>
+
+         <!--▼改行しない▼-->
+         <table id="BallContainer"><tbody><tr><td><button type="button" onclick="remBall(this)" value="none"><img src="./invisible.png" alt="空白"></button></td></tr></tbody></table>
+         <!--▲改行しない▲-->
+      </div>
+      <input type="checkbox" id="escape">脱出成功<br>
+      避難ゾーンの合計得点<input type="text" id="score_rescue" value="0" readonly>
+
+      <p>スタート得点<input type="number" value="0" readonly id="score_start"></p>
+      <p>合計得点<input type="button" value="計算" onclick="calculateTotal()"><input readonly type="text" id="score_all"></p>
+   </body>
+</html> 

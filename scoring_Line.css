@@ -1,0 +1,37 @@
+body{
+    width: 700px;
+    position: absolute;
+}
+table{
+    border: solid 0.8px black;
+    text-align: center;
+    vertical-align: middle;
+}
+table td,table th{
+    border: solid 0.8px black;
+}
+#checkpoint_number{
+    text-align: left;
+}
+#living_victim_number{
+    width: 160px;
+}
+#dead_victim_number{
+    width: 160px;
+}
+#stop_number{
+    width: 160px;
+}
+#th_level{
+    width: 80px;
+}
+#living_victim{
+    width: 130px;
+}
+#dead_victim{
+    width: 130px;
+}
+#rescued_victim img{
+    width: 80px;
+    height: 80px;
+}
